@@ -18384,7 +18384,232 @@
      
 }
 
-        namespace Barryvdh\Debugbar\Facades { 
+        namespace Rap2hpoutre\FastExcel\Facades { 
+            /**
+     * Class FastExcel.
+     *
+     * @see \Rap2hpoutre\FastExcel\FastExcel
+     */ 
+        class FastExcel {
+                    /**
+         * Manually set data apart from the constructor.
+         *
+         * @param \Illuminate\Support\Collection|\Generator|array $data
+         * @return \FastExcel 
+         * @static 
+         */ 
+        public static function data($data)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->data($data);
+        }
+                    /**
+         * 
+         *
+         * @param $sheet_number
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @static 
+         */ 
+        public static function sheet($sheet_number)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->sheet($sheet_number);
+        }
+                    /**
+         * 
+         *
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @static 
+         */ 
+        public static function withoutHeaders()
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->withoutHeaders();
+        }
+                    /**
+         * 
+         *
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @static 
+         */ 
+        public static function withSheetsNames()
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->withSheetsNames();
+        }
+                    /**
+         * 
+         *
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @static 
+         */ 
+        public static function startRow($row)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->startRow($row);
+        }
+                    /**
+         * 
+         *
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @static 
+         */ 
+        public static function transpose()
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->transpose();
+        }
+                    /**
+         * 
+         *
+         * @param string $delimiter
+         * @param string $enclosure
+         * @param string $encoding
+         * @param bool $bom
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @static 
+         */ 
+        public static function configureCsv($delimiter = ',', $enclosure = '"', $encoding = 'UTF-8', $bom = false)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->configureCsv($delimiter, $enclosure, $encoding, $bom);
+        }
+                    /**
+         * Configure the underlying Spout Reader using a callback.
+         *
+         * @param callable|null $callback
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @deprecated Has no effect with spout v4
+         * @see configureOptionsUsing
+         * @static 
+         */ 
+        public static function configureReaderUsing($callback = null)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->configureReaderUsing($callback);
+        }
+                    /**
+         * Configure the underlying Spout Reader using a callback.
+         *
+         * @param callable|null $callback
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @deprecated Has no effect with spout v4
+         * @see configureOptionsUsing
+         * @static 
+         */ 
+        public static function configureWriterUsing($callback = null)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->configureWriterUsing($callback);
+        }
+                    /**
+         * Configure the underlying Spout Reader options using a callback.
+         *
+         * @param callable|null $callback
+         * @return \Rap2hpoutre\FastExcel\FastExcel 
+         * @static 
+         */ 
+        public static function configureOptionsUsing($callback = null)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->configureOptionsUsing($callback);
+        }
+                    /**
+         * 
+         *
+         * @param string $path
+         * @param callable|null $callback
+         * @throws \OpenSpout\Common\Exception\UnsupportedTypeException
+         * @throws \OpenSpout\Reader\Exception\ReaderNotOpenedException
+         * @throws \OpenSpout\Common\Exception\IOException
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function import($path, $callback = null)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->import($path, $callback);
+        }
+                    /**
+         * 
+         *
+         * @param string $path
+         * @param callable|null $callback
+         * @throws \OpenSpout\Common\Exception\UnsupportedTypeException
+         * @throws \OpenSpout\Reader\Exception\ReaderNotOpenedException
+         * @throws \OpenSpout\Common\Exception\IOException
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function importSheets($path, $callback = null)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->importSheets($path, $callback);
+        }
+                    /**
+         * 
+         *
+         * @param string $path
+         * @param callable|null $callback
+         * @throws \OpenSpout\Common\Exception\InvalidArgumentException
+         * @throws \OpenSpout\Common\Exception\UnsupportedTypeException
+         * @throws \OpenSpout\Writer\Exception\WriterNotOpenedException
+         * @throws \OpenSpout\Common\Exception\IOException
+         * @return string 
+         * @static 
+         */ 
+        public static function export($path, $callback = null)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->export($path, $callback);
+        }
+                    /**
+         * 
+         *
+         * @param $path
+         * @param callable|null $callback
+         * @throws \OpenSpout\Common\Exception\InvalidArgumentException
+         * @throws \OpenSpout\Common\Exception\UnsupportedTypeException
+         * @throws \OpenSpout\Writer\Exception\WriterNotOpenedException
+         * @throws \OpenSpout\Common\Exception\IOException
+         * @return \Symfony\Component\HttpFoundation\StreamedResponse|string 
+         * @static 
+         */ 
+        public static function download($path, $callback = null)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->download($path, $callback);
+        }
+                    /**
+         * 
+         *
+         * @param \Rap2hpoutre\FastExcel\Style $style
+         * @return \Rap2hpoutre\FastExcel\Exportable 
+         * @static 
+         */ 
+        public static function headerStyle($style)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->headerStyle($style);
+        }
+                    /**
+         * 
+         *
+         * @param \Rap2hpoutre\FastExcel\Style $style
+         * @return \Rap2hpoutre\FastExcel\Exportable 
+         * @static 
+         */ 
+        public static function rowsStyle($style)
+        {
+                        /** @var \Rap2hpoutre\FastExcel\FastExcel $instance */
+                        return $instance->rowsStyle($style);
+        }
+         
+    }
+     
+}
+
+    namespace Barryvdh\Debugbar\Facades { 
             /**
      * 
      *
@@ -19889,6 +20114,28 @@
         {
                         return \Illuminate\Routing\Route::lazy($enabled);
         }
+                    /**
+         * 
+         *
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $roles
+         * @static 
+         */ 
+        public static function role($roles = [])
+        {
+                        return \Illuminate\Routing\Route::role($roles);
+        }
+                    /**
+         * 
+         *
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $permissions
+         * @static 
+         */ 
+        public static function permission($permissions = [])
+        {
+                        return \Illuminate\Routing\Route::permission($permissions);
+        }
          
     }
      
@@ -20416,6 +20663,31 @@
      
 }
 
+    namespace App\Console\Commands { 
+            /**
+     * 
+     *
+     */ 
+        class CreateActionCommand {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class CreateServiceCommand {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class CreateTraitCommand {
+         
+    }
+     
+}
+
     namespace Arcanedev\LogViewer\Commands { 
             /**
      * Class     PublishCommand
@@ -20625,6 +20897,45 @@
      * @final 
      */ 
         class TestCommand {
+         
+    }
+     
+}
+
+    namespace Spatie\Permission\Commands { 
+            /**
+     * 
+     *
+     */ 
+        class CacheReset {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class CreateRole {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class CreatePermission {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Show {
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class UpgradeForTeams {
          
     }
      
@@ -25061,6 +25372,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class FastExcel extends \Rap2hpoutre\FastExcel\Facades\FastExcel {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Livewire extends \Livewire\Livewire {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
