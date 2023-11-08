@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="mt-10">
-                    <div class=" font-semibold border-b pb-4 mb-4 dark:border-gray-800">
+                    <div class="font-semibold border-b pb-4 mb-4 dark:border-gray-800">
                         <div class="flex items-center justify-between">
                             <h1>Role Permissions</h1>
                             <div class="flex items-center space-x-2">
