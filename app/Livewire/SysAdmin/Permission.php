@@ -88,7 +88,6 @@ class Permission extends Component
 
     public function render()
     {
-        // $permissions = ModelsPermission::paginate(10);
         $permissions = ModelsPermission::where('name', 'like', '%' . $this->search . '%')->get();
 
         return view('livewire.sys-admin.permission', [
