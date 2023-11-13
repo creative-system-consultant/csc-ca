@@ -14,10 +14,10 @@
                 <div class="flex items-center space-x-2">
                     <x-label label="Search : " />
                     <div class="w-64">
-                        <x-input 
-                            wire:model.live="search" 
-                            label="" 
-                            placeholder="Search Module" 
+                        <x-input
+                            wire:model.live="search"
+                            label=""
+                            placeholder="Search Module"
                         />
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                 </x-table.table-body>
                             </tr>
                         @empty
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 text-center ">
+                            <x-table.table-body colspan="" class="text-xs font-medium text-center text-gray-700 ">
                                 <x-no-data title="No data"/>
                             </x-table.table-body>
                         @endforelse
@@ -68,6 +68,28 @@
         <!-- modal -->
         <x-modal.card title="{{ $modalTitle }}" align="center" blur wire:model.defer="openModal" max-width="lg" hide-close="true">
             <div class="gap-4 my-2">
+                <x-select
+                    label="System"
+                    placeholder="-- PLEASE SELECT --"
+                    wire:model.live="system"
+                >
+                    @foreach ($systems as $systemList)
+                        <x-select.option label="{{ strtoupper($systemList->description) }}" value="{{ $systemList->id }}" />
+                    @endforeach
+                </x-select>
+
+                <div class="{{ ($system) ? 'block' : 'hidden' }}">
+                    <x-select
+                        label="Module"
+                        placeholder="-- PLEASE SELECT --"
+                        wire:model="module"
+                    >
+                        @foreach ($modules as $module)
+                            <x-select.option label="{{ strtoupper($module->description) }}" value="{{ $module->id }}" />
+                        @endforeach
+                    </x-select>
+                </div>
+
                 <x-input wire:model="name" label="{{ $modalDescription }}" placeholder="" class="uppercase "/>
             </div>
 
