@@ -67,7 +67,7 @@
 
         <!-- modal -->
         <x-modal.card title="{{ $modalTitle }}" align="center" blur wire:model.defer="openModal" max-width="lg" hide-close="true">
-            <div class="gap-4 my-2">
+            <div class=" grid grid-cols-1 gap-4 my-2">
                 <x-select
                     label="System"
                     placeholder="-- PLEASE SELECT --"
@@ -95,7 +95,8 @@
 
             <x-slot name="footer">
                 <div class="flex justify-end">
-                    <div class="flex">
+                    <div class="flex items-center space-x-2">
+                        <x-button flat label="Cancel" x-on:click="close" />
                         <x-button primary label="Save" wire:click="{{ $modalMethod }}" />
                     </div>
                 </div>
