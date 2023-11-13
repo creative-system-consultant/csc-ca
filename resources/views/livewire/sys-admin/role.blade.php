@@ -45,7 +45,7 @@
                                 </x-table.table-body>
                             </tr>
                         @empty
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 text-center ">
+                            <x-table.table-body colspan="" class="text-xs font-medium text-center text-gray-700 ">
                                 <x-no-data title="No data"/>
                             </x-table.table-body>
                         @endforelse
@@ -67,38 +67,53 @@
                 </div>
 
                 <div class="mt-10">
-                    <div class="font-semibold border-b pb-4 mb-4 dark:border-gray-800">
+                    <div class="pb-4 mb-4 font-semibold border-b dark:border-gray-800">
                         <div class="flex items-center justify-between">
                             <h1>Role Permissions</h1>
                             <div class="flex items-center space-x-2">
                                 <x-label label="Search : " />
                                 <div class="w-64">
-                                    <x-input 
-                                        wire:model.live="search" 
-                                        label="" 
-                                        placeholder="Search Module" 
+                                    <x-input
+                                        wire:model.live="search"
+                                        label=""
+                                        placeholder="Search Module"
                                     />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-4 mt-2">
-                        @foreach ($permissions as $permission)
-                            <x-checkbox
-                                id="{{ $permission->id }}"
-                                label="{{ strtoupper($permission->name) }}"
-                                wire:model="selectedPermission"
-                                value="{{ $permission->name }}"
-                                md
-                            />
-                        @endforeach
-                    </div>
+
+                    @foreach ($systems as $system)
+                        <div class="flex mb-6">
+                            <h1 class="font-medium ">{{ $system->description }}</h1>
+                            <div class="p-3 border rounded-md">
+                                @foreach ($modules->where('system_id', $system->id) as $module)
+                                    <div class="flex mb-6">
+                                        <h1 class="font-medium ">{{ $module->description }}</h1>
+                                        <div class="p-3 border rounded-md">
+                                            <div class="grid grid-cols-3 gap-4 mt-2">
+                                                @foreach ($permissions->where('system_id', $system->id)->where('module_id', $module->id) as $permission)
+                                                    <x-checkbox
+                                                        id="{{ $permission->id }}"
+                                                        label="{{ strtoupper($permission->name) }}"
+                                                        wire:model="selectedPermission"
+                                                        value="{{ $permission->name }}"
+                                                        md
+                                                    />
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
             <x-slot name="footer">
                 <div class="flex justify-end">
-                    <div class="flex space-x-2 items-center">
+                    <div class="flex items-center space-x-2">
                         <x-button flat label="Cancel" x-on:click="close" />
                         <x-button primary label="Save" wire:click="{{ $modalMethod }}" />
                     </div>

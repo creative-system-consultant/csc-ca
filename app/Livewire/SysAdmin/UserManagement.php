@@ -43,7 +43,7 @@ class UserManagement extends Component
 
     public function render()
     {
-        $users = User::paginate(10);
+        $users = User::where('user_type', 2)->paginate(10);
         $roles = Role::all();
 
         return view('livewire.sys-admin.user-management', [

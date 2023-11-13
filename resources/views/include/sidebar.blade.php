@@ -22,34 +22,34 @@
                     <x-logo class="w-auto h-12 "  x-bind:class="openHoverMiniSidebar ? 'lg:h-12' : 'lg:h-6'" />
                 </div>
             </a>
-            <div 
+            <div
                 x-show="toggleMiniSidebar"
-                x-bind:class="openHoverMiniSidebar ? 'block' : 'hidden'" 
-                class="mt-6 flex flex-col items-center">
-                <x-badge 
-                    outline 
+                x-bind:class="openHoverMiniSidebar ? 'block' : 'hidden'"
+                class="flex flex-col items-center mt-6">
+                <x-badge
+                    outline
                     secondary
-                    label="{{ auth()->user()->name }}" 
+                    label="{{ auth()->user()->name }}"
                     class="py-1"
                     >
                     <x-slot name="prepend" class="relative flex items-center w-2 h-2 mr-1">
                         <span class="absolute inline-flex w-full h-full rounded-full bg-green-500/75 animate-ping"></span>
-                        <span class="relative inline-flex w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="relative inline-flex w-2 h-2 bg-green-500 rounded-full"></span>
                     </x-slot>
                 </x-badge>
             </div>
-            <div 
+            <div
                 x-show="!toggleMiniSidebar"
-                class="mt-6 flex flex-col items-center px-4">
-                <x-badge 
-                    outline 
+                class="flex flex-col items-center px-4 mt-6">
+                <x-badge
+                    outline
                     secondary
-                    label="{{ auth()->user()->name }}" 
+                    label="{{ auth()->user()->name }}"
                     class="py-1"
                     >
                     <x-slot name="prepend" class="relative flex items-start w-2 h-2 mr-1">
                         <span class="absolute inline-flex w-full h-full rounded-full bg-green-500/75 animate-ping"></span>
-                        <span class="relative inline-flex w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="relative inline-flex w-2 h-2 bg-green-500 rounded-full"></span>
                     </x-slot>
                 </x-badge>
             </div>
@@ -71,41 +71,35 @@
                             </x-slot>
                         </x-sidebar.nav-item>
 
-                        @can('access user management')
-                            <!-- Users -->
-                            <x-sidebar.nav-item
-                                title="User Management"
-                                activeUrl="user-management"
-                                route="{{ route('userManagement') }}">
-                                <x-slot name="iconName">
-                                    <x-icon name="user-group" class="w-6 h-6"/>
-                                </x-slot>
-                            </x-sidebar.nav-item>
-                        @endcan
+                        <!-- Users -->
+                        <x-sidebar.nav-item
+                            title="User Management"
+                            activeUrl="user-management"
+                            route="{{ route('userManagement') }}">
+                            <x-slot name="iconName">
+                                <x-icon name="user-group" class="w-6 h-6"/>
+                            </x-slot>
+                        </x-sidebar.nav-item>
 
-                        @can('access roles')
-                            <!-- Roles -->
-                            <x-sidebar.nav-item
-                                title="Roles"
-                                activeUrl="roles"
-                                route="{{ route('roles.index') }}">
-                                <x-slot name="iconName">
-                                    <x-icon name="shield-check" class="w-6 h-6"/>
-                                </x-slot>
-                            </x-sidebar.nav-item>
-                        @endcan
+                        <!-- Roles -->
+                        <x-sidebar.nav-item
+                            title="Roles"
+                            activeUrl="roles"
+                            route="{{ route('roles.index') }}">
+                            <x-slot name="iconName">
+                                <x-icon name="shield-check" class="w-6 h-6"/>
+                            </x-slot>
+                        </x-sidebar.nav-item>
 
-                        @can('access permissions')
-                            <!-- Permission -->
-                            <x-sidebar.nav-item
-                                title="Permission"
-                                activeUrl="permissions"
-                                route="{{ route('permissions.index') }}">
-                                <x-slot name="iconName">
-                                    <x-icon name="shield-exclamation" class="w-6 h-6"/>
-                                </x-slot>
-                            </x-sidebar.nav-item>
-                        @endcan
+                        <!-- Permission -->
+                        <x-sidebar.nav-item
+                            title="Permission"
+                            activeUrl="permissions"
+                            route="{{ route('permissions.index') }}">
+                            <x-slot name="iconName">
+                                <x-icon name="shield-exclamation" class="w-6 h-6"/>
+                            </x-slot>
+                        </x-sidebar.nav-item>
                     </ul>
                 </div>
             </div>

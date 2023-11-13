@@ -2,6 +2,8 @@
 
 namespace App\Livewire\SysAdmin;
 
+use App\Models\Ref\System;
+use App\Models\Ref\SystemModule;
 use App\Services\General\PopupService;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
@@ -17,6 +19,12 @@ class Permission extends Component
     public $modalDescription;
     public $modalMethod;
     public $search = '';
+
+    #[Rule('required')]
+    public $system;
+
+    #[Rule('required')]
+    public $module;
 
     #[Rule('required')]
     public $name;
@@ -46,10 +54,12 @@ class Permission extends Component
         $this->validate();
 
         ModelsPermission::create([
-            'name' => strtolower($this->name)
+            'name' => strtolower($this->name),
+            'system_id' => $this->system,
+            'module_id' => $this->module
         ]);
 
-        $this->reset('name');
+        $this->reset('name', 'system', 'module');
         $this->openModal = false;
 
         $this->dialog()->success('Success!', 'Permission Created Successfully');
@@ -57,7 +67,10 @@ class Permission extends Component
 
     public function edit($id)
     {
-        $this->name = ModelsPermission::whereId($id)->first()->name;
+        $permission = ModelsPermission::whereId($id)->first();
+        $this->name = $permission->name;
+        $this->system = $permission->system_id;
+        $this->module = $permission->module_id;
         $this->setupModal("update", "Update Permission", "Permission Name", "update({$id})");
     }
 
@@ -66,7 +79,9 @@ class Permission extends Component
         $this->validate();
 
         ModelsPermission::whereId($id)->update([
-            'name' => strtolower($this->name)
+            'name' => strtolower($this->name),
+            'system_id' => $this->system,
+            'module_id' => $this->module
         ]);
 
         $this->reset('name');
@@ -88,9 +103,13 @@ class Permission extends Component
 
     public function render()
     {
+        $systems = System::all();
+        $modules = SystemModule::where('system_id', $this->system)->get();
         $permissions = ModelsPermission::where('name', 'like', '%' . $this->search . '%')->get();
 
         return view('livewire.sys-admin.permission', [
+            'systems' => $systems,
+            'modules' => $modules,
             'permissions' => $permissions
         ])->extends('layouts.main');
     }

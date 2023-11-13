@@ -2,6 +2,8 @@
 
 namespace App\Livewire\SysAdmin;
 
+use App\Models\Ref\System;
+use App\Models\Ref\SystemModule;
 use App\Services\General\PopupService;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
@@ -48,11 +50,14 @@ class Role extends Component
     {
         $this->validate();
 
-        ModelsRole::create([
+        $id = ModelsRole::create([
             'name' => strtolower($this->name)
-        ]);
+        ])->id;
 
-        $this->reset('name');
+        $role = ModelsRole::find($id);
+        $role->syncPermissions($this->selectedPermission);
+
+        $this->reset('name', 'selectedPermission');
         $this->openModal = false;
 
         $this->dialog()->success('Success!', 'Role Created Successfully');
@@ -98,11 +103,15 @@ class Role extends Component
     public function render()
     {
         $roles = ModelsRole::paginate(10);
+        $systems = System::all();
+        $modules = SystemModule::where('description', 'like', '%' . $this->search . '%')->get();
         $permissions = Permission::where('name', 'like', '%' . $this->search . '%')->get();
 
         return view('livewire.sys-admin.role',[
             'roles' => $roles,
-            'permissions' => $permissions
+            'permissions' => $permissions,
+            'systems' => $systems,
+            'modules' => $modules,
         ])->extends('layouts.main');
     }
 }
