@@ -98,21 +98,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div  class="col-span-10">
-                                            <div class="border dark:border-gray-900">
-                                                <div class="flex flex-wrap gap-4 px-3 py-4">
-                                                    @foreach ($permissions->where('system_id', $system->id)->where('module_id', $module->id) as $permission)
-                                                        <div class="flex items-center space-x-2">
-                                                            <x-checkbox
-                                                                id="{{ $permission->id }}"
-                                                                wire:model="selectedPermission"
-                                                                value="{{ $permission->name }}"
-                                                                md
-                                                            />
-                                                            <x-label class="text-xs" label="{{ strtoupper($permission->name) }}"/>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
+                                        <div class="col-span-10 border dark:border-gray-900">
+                                            <div class="flex flex-wrap gap-4 px-3 py-4">
+                                                @foreach ($permissions->where('system_id', $system->id)->where('module_id', $module->id) as $permission)
+                                                    <div class="flex items-center space-x-2">
+                                                        <x-checkbox
+                                                            id="{{ $permission->id }}"
+                                                            wire:model="selectedPermission"
+                                                            value="{{ $permission->name }}"
+                                                            md
+                                                        />
+                                                        <x-label class="text-xs" label="{{ strtoupper($permission->name) }}"/>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
