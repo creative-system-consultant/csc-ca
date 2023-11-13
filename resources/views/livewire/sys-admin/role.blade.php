@@ -1,4 +1,4 @@
-<div  x-data="searching()">
+<div>
     <x-container title="Roles" routeBackBtn="" titleBackBtn="" disableBackBtn="">
         <div class="grid grid-cols-1">
             <div class="flex items-center">
