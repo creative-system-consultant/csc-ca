@@ -4,6 +4,7 @@ namespace App\Livewire\SysAdmin;
 
 use App\Models\User;
 use App\Services\General\PopupService;
+use GuzzleHttp\Client;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 use WireUi\Traits\Actions;
@@ -36,6 +37,16 @@ class UserManagement extends Component
     {
         $user = User::whereId($id)->first();
         $user->syncRoles($this->role);
+
+        // webhook to clear cache on all system that been oversee
+        $urls = [
+            'http://127.0.0.1:9000/webhook/clear-cache'
+            // ,'http://127.0.0.1:9001/webhook/clear-cache'
+        ]; // change to use url of siskop/fms
+
+        foreach ($urls as $url) {
+            $this->cacheClearService->clearCache($url);
+        }
 
         $this->openModal = false;
         $this->dialog()->success('Assign Successful', 'Role assigning to this user is successful.');
