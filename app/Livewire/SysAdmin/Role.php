@@ -128,7 +128,7 @@ class Role extends Component
 
     public function render()
     {
-        $roles = ModelsRole::paginate(10);
+        $roles = ModelsRole::where('created_by', auth()->id())->paginate(10);
         $systems = System::all();
         $modules = SystemModule::where('description', 'like', '%' . $this->search . '%')->get();
         $permissions = Permission::where('name', 'like', '%' . $this->search . '%')->get();
