@@ -19,10 +19,12 @@ class UserManagement extends Component
     public $role = [];
 
     protected $popupService;
+    protected $cacheClearService;
 
     public function __construct()
     {
         $this->popupService = app(PopupService::class);
+        $this->cacheClearService = app(CachecClearService::class);
     }
 
     public function assign($id)
