@@ -4,7 +4,9 @@ namespace App\Livewire\SysAdmin;
 
 use App\Models\Ref\System;
 use App\Models\Ref\SystemModule;
+use App\Services\CachecClearService;
 use App\Services\General\PopupService;
+use GuzzleHttp\Client;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
@@ -27,10 +29,12 @@ class Role extends Component
     public $selectedPermission = [];
 
     protected $popupService;
+    protected $cacheClearService;
 
-    public function __construct()
+    public function __construct(CachecClearService $cacheClearService)
     {
         $this->popupService = app(PopupService::class);
+        $this->cacheClearService = $cacheClearService;
     }
 
     private function setupModal($method, $title, $description, $actualMethod = null)
@@ -57,6 +61,16 @@ class Role extends Component
         $role = ModelsRole::find($id);
         $role->syncPermissions($this->selectedPermission);
 
+        // webhook to clear cache on all system that been oversee
+        $urls = [
+            'http://127.0.0.1:9000/webhook/clear-cache'
+            // ,'http://127.0.0.1:9001/webhook/clear-cache'
+        ]; // change to use url of siskop/fms
+
+        foreach ($urls as $url) {
+            $this->cacheClearService->clearCache($url);
+        }
+
         $this->reset('name', 'selectedPermission');
         $this->openModal = false;
 
@@ -82,6 +96,16 @@ class Role extends Component
         ]);
 
         $role->syncPermissions($this->selectedPermission);
+
+        // webhook to clear cache on all system that been oversee
+        $urls = [
+            'http://127.0.0.1:9000/webhook/clear-cache'
+            // ,'http://127.0.0.1:9001/webhook/clear-cache'
+        ]; // change to use url of siskop/fms
+
+        foreach ($urls as $url) {
+            $this->cacheClearService->clearCache($url);
+        }
 
         $this->reset('name', 'selectedPermission');
         $this->openModal = false;
