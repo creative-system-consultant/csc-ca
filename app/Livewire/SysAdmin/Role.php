@@ -31,10 +31,10 @@ class Role extends Component
     protected $popupService;
     protected $cacheClearService;
 
-    public function __construct(CachecClearService $cacheClearService)
+    public function __construct()
     {
         $this->popupService = app(PopupService::class);
-        $this->cacheClearService = $cacheClearService;
+        $this->cacheClearService = app(CachecClearService::class);
     }
 
     private function setupModal($method, $title, $description, $actualMethod = null)
@@ -55,7 +55,8 @@ class Role extends Component
         $this->validate();
 
         $id = ModelsRole::create([
-            'name' => strtolower($this->name)
+            'name' => strtolower($this->name),
+            'created_by' => auth()->id()
         ])->id;
 
         $role = ModelsRole::find($id);
@@ -92,7 +93,8 @@ class Role extends Component
         $role = ModelsRole::whereId($id)->first();
 
         $role->update([
-            'name' => strtolower($this->name)
+            'name' => strtolower($this->name),
+            'updated_by' => auth()->id(),
         ]);
 
         $role->syncPermissions($this->selectedPermission);
