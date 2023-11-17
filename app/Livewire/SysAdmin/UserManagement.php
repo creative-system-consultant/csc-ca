@@ -39,7 +39,23 @@ class UserManagement extends Component
     public function save($id)
     {
         $user = User::whereId($id)->first();
-        $user->syncRoles($this->role);
+        // $user->syncRoles($this->role);
+        $clientId = $user->client_id;
+
+        // Retrieve the role by its name and client ID
+        $role = Role::where('name', $this->role)->first();
+
+        // First, detach all roles for this client
+        $currentRoles = $user->roles()->wherePivot('client_id', $clientId)->get();
+        foreach ($currentRoles as $currentRole) {
+            $user->removeRole($currentRole);
+        }
+
+        // Then, assign the new role for this client
+        if ($role) {
+            // Use syncRoles to manually attach the role with extra pivot column
+            $user->roles()->sync([$role->id => ['client_id' => $clientId]]);
+        }
 
         // webhook to clear cache on all system that been oversee
         $urls = [
@@ -58,7 +74,7 @@ class UserManagement extends Component
     public function render()
     {
         $users = User::where('user_type', 2)->paginate(10);
-        $roles = Role::all();
+        $roles = Role::whereNull('client_id')->get();
 
         return view('livewire.sys-admin.user-management', [
             'users' => $users,

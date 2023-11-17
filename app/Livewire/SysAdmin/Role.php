@@ -56,6 +56,7 @@ class Role extends Component
 
         $id = ModelsRole::create([
             'name' => strtolower($this->name),
+            'client_id' => auth()->user()->client_id,
             'created_by' => auth()->id()
         ])->id;
 
@@ -94,7 +95,8 @@ class Role extends Component
 
         $role->update([
             'name' => strtolower($this->name),
-            'updated_by' => auth()->id(),
+            'client_id' => auth()->user()->client_id,
+            'created_by' => auth()->id()
         ]);
 
         $role->syncPermissions($this->selectedPermission);
