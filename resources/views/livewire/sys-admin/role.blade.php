@@ -99,7 +99,7 @@
                             <div>
                                 @foreach ($modules->where('system_id', $system->id) as $module)
                                     <div class="grid grid-cols-12">
-                                        <div class="col-span-3 bg-gray-50 dark:bg-gray-900 py-3 border text-primary-600 flex items-center  dark:border-gray-800">
+                                        <div class="col-span-2 bg-gray-50 dark:bg-gray-900 py-3 border text-primary-600 flex items-start  dark:border-gray-800">
                                             <div 
                                                 class="flex font-medium items-center pl-2">
                                                     <x-checkbox
@@ -108,14 +108,14 @@
                                                         value=""
                                                         md
                                                     />
-                                                <div class="flex space-x-1 items-start px-4 text-xs">
+                                                <div class="flex space-x-1 items-start px-4 text-[0.7rem]">
                                                     <x-icon name="collection" class="w-4 h-4"/>
                                                     <h1>{{ $module->description }}</h1>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-span-9 border dark:border-gray-900">
-                                            <div class="flex flex-wrap gap-4 px-3 py-4">
+                                        <div class="col-span-10 border dark:border-gray-900">
+                                            <div class="grid grid-cols-4 gap-x-0 gap-y-4 px-3 py-4">
                                                 @foreach ($permissions->where('system_id', $system->id)->where('module_id', $module->id) as $permission)
                                                     <div class="flex items-center space-x-2">
                                                         <x-checkbox
@@ -124,7 +124,7 @@
                                                             value="{{ $permission->name }}"
                                                             md
                                                         />
-                                                        <x-label class="text-xs" label="{{ strtoupper($permission->name) }}"/>
+                                                        <x-label class="text-[0.7rem]" label="{{ strtoupper($permission->name) }}"/>
                                                     </div>
                                                 @endforeach
                                             </div>
