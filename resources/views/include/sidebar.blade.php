@@ -84,7 +84,7 @@
                         <!-- Roles -->
                         <x-sidebar.nav-item
                             title="Roles"
-                            activeUrl="roles"
+                            activeUrl="roles/*"
                             route="{{ route('roles.index') }}">
                             <x-slot name="iconName">
                                 <x-icon name="shield-check" class="w-6 h-6"/>
