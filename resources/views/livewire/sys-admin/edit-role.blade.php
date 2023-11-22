@@ -161,7 +161,7 @@
 
             <div class="flex justify-end bg-gray-50 py-4 px-2 dark:bg-gray-900">
                 <div class="flex items-center space-x-2">
-                    <x-button flat label="Cancel" href="{{ route('roles.index') }}" wire:navigate />
+                    <x-button flat label="Cancel" href="{{ route('roles.index') }}"  />
                     <x-button primary label="Save" />
                 </div>
             </div>

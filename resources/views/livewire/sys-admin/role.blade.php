@@ -28,12 +28,13 @@
                                 <x-table.table-body colspan="" class="text-left text-gray-500">
                                     <div class="flex items-center space-x-2">
                                         <x-button
+                                            wire:click="edit('{{ $role->id }}')"
                                             xs
                                             icon="pencil-alt"
                                             primary
                                             label="Edit"
-                                            href="{{ route('roles.edit', ['id' => $role->id ]) }}"
-                                            wire:navigate
+                                            {{-- href="{{ route('roles.edit', ['id' => $role->id ]) }}"
+                                            wire:navigate --}}
                                         />
                                         <x-button
                                             wire:click="delete('{{ $role->id }}')"

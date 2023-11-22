@@ -10,11 +10,11 @@
                                     Welcome to <span class="text-primary-500">CSC-CA</span>
                                 </h1>
                                 <h4 class="text-gray-500 text-sm dark:text-white text-center sm:text-left">
-                                    Also known as “KOPERASI Financing Management” 
+                                    CSC-CA is control access user permission. 
                                     Used to manage information of “KOPERASI members and their financing.
                                 </h4>
                                 <div class="pt-4">
-                                    <x-button class="py-2 w-full sm:w-fit" wire:navigate href="" icon="arrow-circle-right" primary label=" Go to User Management" />
+                                    <x-button class="py-2 w-full sm:w-fit"  href="{{ route('userManagement') }}" icon="arrow-circle-right" primary label=" Go to User Management" />
                                 </div>
                             </div>
                             <div class="flex justify-center items-center ml-0 sm:-ml-6">
@@ -37,7 +37,7 @@
                                 {{ auth()->user()->email }}
                             </h1>
                             <div class="w-full mt-5">
-                                <x-button class="py-3 w-full" wire:navigate href="{{route('profile')}}" outline black label="Edit Profile" />
+                                <x-button class="py-3 w-full"  href="{{route('profile')}}" outline black label="Edit Profile" />
                             </div>
                         </div>
                     </div>
