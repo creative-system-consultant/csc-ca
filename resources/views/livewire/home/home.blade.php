@@ -10,8 +10,8 @@
                                     Welcome to <span class="text-primary-500">CSC-CA</span>
                                 </h1>
                                 <h4 class="text-gray-500 text-sm dark:text-white text-center sm:text-left">
-                                    CSC-CA is control access user permission. 
-                                    Used to manage information of “KOPERASI members and their financing.
+                                    Control Access Management System (CAMS) for a Financing Management System (FMS) is a 
+                                    specialized security framework designed to safeguard sensitive financial data and operations. 
                                 </h4>
                                 <div class="pt-4">
                                     <x-button class="py-2 w-full sm:w-fit"  href="{{ route('userManagement') }}" icon="arrow-circle-right" primary label=" Go to User Management" />
