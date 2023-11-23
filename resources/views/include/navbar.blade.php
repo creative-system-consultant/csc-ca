@@ -37,7 +37,7 @@
                 <div class="relative " x-data="{menuOpen:false}" x-cloak>
                     <div x-on:click="menuOpen = !menuOpen" @click.away="menuOpen = false"
                         class="flex items-center space-x-2 cursor-pointer">
-                        <x-avatar md src="https://picsum.photos/300?size=md" />
+                        <x-avatar md src="{{asset('profile.jpeg')}}" />
                         <p class="w-14 dark:text-gray-200 line-clamp-1" :class="{'': atTop, ' text-black xl:text-white': !atTop}">
                             {{ auth()->user()->name }}
                         </p>

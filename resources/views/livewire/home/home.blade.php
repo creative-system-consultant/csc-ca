@@ -29,7 +29,7 @@
 
                     <div class="hidden xl:block">
                         <div class="bg-white/70 dark:bg-gray-900/50 dark:border-black  dark:text-white backdrop-blur-lg p-4 shadow-lg rounded-lg h-72 flex flex-col items-center justify-center px-12 border">
-                            <x-avatar size="w-24 h-24" class="border-primary-700 border-2" src="https://picsum.photos/300?size=lg" />
+                            <x-avatar size="w-24 h-24" class="border-primary-700 border-2" src="{{asset('profile.jpeg')}}" />
                             <h1 class="pt-2">
                                 {{ auth()->user()->name }}
                             </h1>
