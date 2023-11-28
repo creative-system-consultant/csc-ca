@@ -2,21 +2,43 @@
 
 namespace App\Livewire\SysAdmin;
 
+use App\Models\Ref\System;
+use App\Models\Ref\SystemModule;
 use Livewire\Component;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class EditRole extends Component
 {
-    public $setIndex = 0;
+    public $role;
+    public $name;
+    public $system;
+    public $currentSystem = 1;
+    public $currentSystemData;
+    public $modules;
 
+    public function mount($id)
+    {
+        $this->role = Role::find($id);
+        $this->name = $this->role->name;
+        $this->system = System::all();
+        $this->currentSystemData = System::find($this->currentSystem);
+        $this->modules = SystemModule::whereSystemId($this->currentSystem)->get();
+    }
 
     public function setState($index)
     {
-        $this->setIndex = $index;
+        $this->currentSystem = $index;
+        $this->currentSystemData = System::find($this->currentSystem);
+        $this->modules = SystemModule::whereSystemId($this->currentSystem)->get();
     }
-    
+
     public function render()
     {
-        
-        return view('livewire.sys-admin.edit-role')->extends('layouts.main');
+        $permissions = Permission::all();
+
+        return view('livewire.sys-admin.edit-role', [
+            'permissions' => $permissions
+        ])->extends('layouts.main');
     }
 }
