@@ -10,11 +10,11 @@
                                     Welcome to <span class="text-primary-500">CSC-CA</span>
                                 </h1>
                                 <h4 class="text-gray-500 text-sm dark:text-white text-center sm:text-left">
-                                    Also known as “KOPERASI Financing Management” 
-                                    Used to manage information of “KOPERASI members and their financing.
+                                    Control Access Management System (CAMS) for a Financing Management System (FMS) is a 
+                                    specialized security framework designed to safeguard sensitive financial data and operations. 
                                 </h4>
                                 <div class="pt-4">
-                                    <x-button class="py-2 w-full sm:w-fit" wire:navigate href="" icon="arrow-circle-right" primary label=" Go to User Management" />
+                                    <x-button class="py-2 w-full sm:w-fit"  href="{{ route('userManagement') }}" icon="arrow-circle-right" primary label=" Go to User Management" />
                                 </div>
                             </div>
                             <div class="flex justify-center items-center ml-0 sm:-ml-6">
@@ -29,7 +29,7 @@
 
                     <div class="hidden xl:block">
                         <div class="bg-white/70 dark:bg-gray-900/50 dark:border-black  dark:text-white backdrop-blur-lg p-4 shadow-lg rounded-lg h-72 flex flex-col items-center justify-center px-12 border">
-                            <x-avatar size="w-24 h-24" class="border-primary-700 border-2" src="https://picsum.photos/300?size=lg" />
+                            <x-avatar size="w-24 h-24" class="border-primary-700 border-2" src="{{asset('profile.jpeg')}}" />
                             <h1 class="pt-2">
                                 {{ auth()->user()->name }}
                             </h1>
@@ -37,7 +37,7 @@
                                 {{ auth()->user()->email }}
                             </h1>
                             <div class="w-full mt-5">
-                                <x-button class="py-3 w-full" wire:navigate href="{{route('profile')}}" outline black label="Edit Profile" />
+                                <x-button class="py-3 w-full"  href="{{route('profile')}}" outline black label="Edit Profile" />
                             </div>
                         </div>
                     </div>

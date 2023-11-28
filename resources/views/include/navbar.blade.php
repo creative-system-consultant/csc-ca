@@ -37,7 +37,7 @@
                 <div class="relative " x-data="{menuOpen:false}" x-cloak>
                     <div x-on:click="menuOpen = !menuOpen" @click.away="menuOpen = false"
                         class="flex items-center space-x-2 cursor-pointer">
-                        <x-avatar md src="https://picsum.photos/300?size=md" />
+                        <x-avatar md src="{{asset('profile.jpeg')}}" />
                         <p class="w-14 dark:text-gray-200 line-clamp-1" :class="{'': atTop, ' text-black xl:text-white': !atTop}">
                             {{ auth()->user()->name }}
                         </p>
@@ -46,7 +46,7 @@
                         class="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white border-2 border-gray-100 rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700"
                         role="menu">
                         <div>
-                            <a wire:navigate href="{{route('profile')}}"
+                            <a  href="{{route('profile')}}"
                                 class="flex items-center px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700">
                                 <x-icon name="user-circle" class="w-4 h-4 mr-2" />
                                 Profile
