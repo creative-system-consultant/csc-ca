@@ -52,8 +52,8 @@
                         </div>
                         <div class="mb-6">
                             <div>
-                                <div class="grid grid-cols-12">
-                                    @foreach ($modules as $module)
+                                @foreach ($modules as $module)
+                                    <div class="grid grid-cols-12">
                                         <div class="flex items-start col-span-2 py-3 border bg-gray-50 dark:bg-gray-900 text-primary-600 dark:border-gray-600">
                                             <div class="flex items-center pl-2 font-medium">
                                                 <x-checkbox
@@ -72,9 +72,11 @@
                                         {{-- @dump($currentSystem)
                                         @dump($module->id)
                                         @dump($permissions) --}}
-                                        @foreach ($permissions->where('system_id', $currentSystem)->where('module_id', $module->id) as $permission)
-                                            <div class="col-span-10 border dark:border-gray-600">
-                                                <div class="grid grid-cols-4 px-3 py-4 gap-x-0 gap-y-4">
+                                        
+                                    
+                                        <div class="col-span-10 border dark:border-gray-600">
+                                            <div class="grid grid-cols-4 px-3 py-4 gap-x-0 gap-y-4">
+                                                @foreach ($permissions->where('system_id', $currentSystem)->where('module_id', $module->id) as $permission)
                                                     <div class="flex items-center space-x-2">
                                                         <x-checkbox
                                                             id=""
@@ -82,13 +84,13 @@
                                                             value=""
                                                             md
                                                         />
-                                                        <x-label class="text-[0.68rem]" label="{{ $permission->name }}"/>
+                                                        <x-label class="text-[0.7rem]" label="{{ $permission->name }}"/>
                                                     </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                        @endforeach
-                                    @endforeach
-                                </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
