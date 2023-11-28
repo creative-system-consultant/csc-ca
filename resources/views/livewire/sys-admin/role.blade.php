@@ -28,13 +28,12 @@
                                 <x-table.table-body colspan="" class="text-left text-gray-500">
                                     <div class="flex items-center space-x-2">
                                         <x-button
-                                            wire:click="edit('{{ $role->id }}')"
                                             xs
                                             icon="pencil-alt"
                                             primary
                                             label="Edit"
-                                            {{-- href="{{ route('roles.edit', ['id' => $role->id ]) }}"
-                                            wire:navigate --}}
+                                            href="{{ route('roles.edit', ['id' => $role->id ]) }}"
+                                            wire:navigate
                                         />
                                         <x-button
                                             wire:click="delete('{{ $role->id }}')"
@@ -52,13 +51,11 @@
                             </x-table.table-body>
                         @endforelse
                     </x-slot>
-
                 </x-table.table>
                 <div class="px-2 py-2 mt-4">
                     {{ $roles->links() }}
                 </div>
             </div>
-
         </div>
 
         <!-- modal -->
@@ -87,7 +84,7 @@
 
                     @foreach ($systems as $system)
                         <div class="mb-6">
-                            <div class="flex items-center space-x-2 mb-2 pl-2">
+                            <div class="flex items-center pl-2 mb-2 space-x-2">
                                 <x-checkbox
                                     id=""
                                     wire:model=""
@@ -101,9 +98,9 @@
                             <div>
                                 @foreach ($modules->where('system_id', $system->id) as $module)
                                     <div class="grid grid-cols-12">
-                                        <div class="col-span-2 bg-gray-50 dark:bg-gray-900 py-3 border text-primary-600 flex items-start  dark:border-gray-800">
-                                            <div 
-                                                class="flex font-medium items-center pl-2">
+                                        <div class="flex items-start col-span-2 py-3 border bg-gray-50 dark:bg-gray-900 text-primary-600 dark:border-gray-800">
+                                            <div
+                                                class="flex items-center pl-2 font-medium">
                                                     <x-checkbox
                                                         id=""
                                                         wire:model=""
@@ -117,7 +114,7 @@
                                             </div>
                                         </div>
                                         <div class="col-span-10 border dark:border-gray-900">
-                                            <div class="grid grid-cols-4 gap-x-0 gap-y-4 px-3 py-4">
+                                            <div class="grid grid-cols-4 px-3 py-4 gap-x-0 gap-y-4">
                                                 @foreach ($permissions->where('system_id', $system->id)->where('module_id', $module->id) as $permission)
                                                     <div class="flex items-center space-x-2">
                                                         <x-checkbox
