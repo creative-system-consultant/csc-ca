@@ -16,29 +16,22 @@ class EditRole extends Component
     public $currentSystem = 1;
     public $currentSystemData;
     public $modules;
+    public $permissions;
 
     public function mount($id)
     {
         $this->role = Role::find($id);
         $this->name = $this->role->name;
         $this->system = System::all();
-        $this->currentSystemData = System::find($this->currentSystem);
-        $this->modules = SystemModule::whereSystemId($this->currentSystem)->get();
     }
 
     public function setState($index)
     {
         $this->currentSystem = $index;
-        $this->currentSystemData = System::find($this->currentSystem);
-        $this->modules = SystemModule::whereSystemId($this->currentSystem)->get();
     }
 
     public function render()
     {
-        $permissions = Permission::all();
-
-        return view('livewire.sys-admin.edit-role', [
-            'permissions' => $permissions
-        ])->extends('layouts.main');
+        return view('livewire.sys-admin.edit-role')->extends('layouts.main');
     }
 }
