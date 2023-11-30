@@ -5,14 +5,14 @@
                 <div class="mb-6">
                     <x-card title="Personal Information">
                         <div class="flex items-center space-x-2">
-                            <x-avatar size="w-32 h-32" class="border-primary-700 border-2" src="{{asset('profile.jpeg')}}" />
+                            <x-avatar size="w-32 h-32" class="border-2 border-primary-700" src="{{asset('profile.jpeg')}}" />
                             <input type="file" id="fileInput" class="hidden w-full" />
                             <label for="fileInput" class="btn">
                                 <x-icon name="cloud-upload" class="w-4 h-4" />
                                 <p>Change Profile Photo</p>
                             </label>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
+                        <div class="grid grid-cols-1 gap-2 mt-4 md:grid-cols-3">
                             <x-input
                                 wire:model.defer=""
                                 label="Username"
@@ -42,17 +42,17 @@
                 </div>
                 <div  class="mb-6">
                     <x-card title="Change Password">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
-                            <x-inputs.password 
-                                label="Current Password" 
+                        <div class="grid grid-cols-1 gap-2 mt-4 md:grid-cols-3">
+                            <x-inputs.password
+                                label="Current Password"
                                 wire:model.defer=""
                             />
-                            <x-inputs.password 
-                                label="New Password" 
+                            <x-inputs.password
+                                label="New Password"
                                 wire:model.defer=""
                             />
-                            <x-inputs.password 
-                                label="Confirm Password" 
+                            <x-inputs.password
+                                label="Confirm Password"
                                 wire:model.defer=""
                             />
                         </div>

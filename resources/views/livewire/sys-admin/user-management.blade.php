@@ -8,7 +8,7 @@
             <div class="mt-3">
                 <x-table.table loading="true" loadingtarget="search">
                     <x-slot name="thead">
-                        <x-table.table-header class="text-left" value="NAME" sort="" />
+                        <x-table.table-header class="text-left" value="SYSTEM ADMINISTRATOR NAME" sort="" />
                         <x-table.table-header class="text-left" value="ROLE" sort="" />
                         <x-table.table-header class="text-left" value="ACTION" sort="" />
                     </x-slot>
