@@ -5,6 +5,7 @@ namespace App\Livewire\SysAdmin;
 use App\Models\Ref\System;
 use App\Models\Ref\SystemModule;
 use App\Services\CachecClearService;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -89,15 +90,13 @@ class EditRoleBody extends Component
 
     public function updatedSelectedModule()
     {
-        $this->selectedPermission = [];
-
         foreach ($this->selectedModule as $moduleId) {
             $moduleId = (int) $moduleId; // Cast to integer
             $modulePermissions = Permission::where('module_id', $moduleId)->pluck('id')->toArray();
             $this->selectedPermission = array_merge($this->selectedPermission, $modulePermissions);
         }
 
-        $this->selectedPermission = array_unique($this->selectedPermission);
+        $this->selectedPermission = array_values(array_unique($this->selectedPermission));
 
         // Update selectedSystem status
         $this->updateSystemSelection();
@@ -115,6 +114,9 @@ class EditRoleBody extends Component
             }
         }
 
+        // Cast permission IDs to integers
+        $this->selectedPermission = array_map('intval', $this->selectedPermission);
+
         // Update selectedSystem status
         $this->updateSystemSelection();
     }
@@ -127,6 +129,7 @@ class EditRoleBody extends Component
         $this->permissions = Permission::all();
     }
 
+    #[On('updateRole')]
     public function update()
     {
         $this->role->update([
@@ -135,14 +138,10 @@ class EditRoleBody extends Component
             'created_by' => auth()->id()
         ]);
 
-        // Fetch current permissions of the role
-        $currentPermissions = $this->role->permissions->pluck('id', 'system_id')->toArray();
+        // Revoke all current permissions
+        $this->role->revokePermissionTo($this->role->permissions);
 
-        // Remove permissions of the current system from the role's permissions
-        $permissionsToRemove = isset($currentPermissions[$this->currentSystem]) ? $currentPermissions[$this->currentSystem] : [];
-        $this->role->revokePermissionTo($permissionsToRemove);
-
-        // Sync permissions for the current system
+        // Assign new permissions
         $this->role->givePermissionTo($this->selectedPermission);
 
         // webhook to clear cache on all system that been oversee
