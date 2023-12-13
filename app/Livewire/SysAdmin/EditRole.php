@@ -3,9 +3,7 @@
 namespace App\Livewire\SysAdmin;
 
 use App\Models\Ref\System;
-use App\Models\Ref\SystemModule;
 use Livewire\Component;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class EditRole extends Component
@@ -28,6 +26,11 @@ class EditRole extends Component
     public function setState($index)
     {
         $this->currentSystem = $index;
+    }
+
+    public function update()
+    {
+        $this->dispatch('updateRole')->to(EditRoleBody::class);
     }
 
     public function render()
